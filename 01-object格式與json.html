@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-evenly;
+            width: 100%;
+            height: 50px;
+            background-color: burlywood;
+            padding: 10px;
+        }
+
+        nav>div {
+            width: 200px;
+            height: 30px;
+            background-color: purple;
+            text-align: center;
+            line-height: 30px;
+            color: white;
+            border: 1px solid white;
+            cursor: pointer;
+        }
+
+        main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            width: 100%;
+            min-height: calc(100vh - 50px);
+            background-color: gray;
+            padding: 40px 30px;
+        }
+
+        .card {
+            margin-bottom: 10px;
+            width: 200px;
+            height: 300px;
+            background-color: greenyellow;
+
+
+        }
+
+        .card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+
+        .card div {
+            width: 100%;
+            padding: 0 20px;
+        }
+
+        .card .name {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .ex {
+            background-color: unset;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div onclick="show('all')">全部</div>
+        <div onclick="show('dessert')">甜點</div>
+        <div onclick="show('drink')">飲料</div>
+        <div onclick="show('food')">主食</div>
+    </nav>
+    <main>
+        <!-- <div class="card">
+            <img src="https://i.epochtimes.com/assets/uploads/2014/10/1409221241502483.jpg" alt="">
+            <div class="name">高級紅茶</div>
+            <div class="ingredients">原料:紅茶葉、水</div>
+            <div class="price">價格:1200</div>
+        </div> -->
+
+    </main>
+    <script>
+        //版面請自己來
+        //一進入網頁，要把全部的商品呈現出來
+        //要有filter(過濾器)
+        var main = document.querySelector('main')
+
+        // 以下是上益好好吃的商品清單
+        var SY_goodgoodEat_Product = [
+            {
+                name: '高級紅茶',
+                img: 'https://i.epochtimes.com/assets/uploads/2014/10/1409221241502483.jpg',
+                content: '紅茶葉、水',
+                price: '1200',
+                tag1: 'drink'
+            },
+            {
+                name: '手工餅乾',
+                img: 'https://cdn2.ettoday.net/images/3629/d3629818.jpg',
+                content: '澱粉、糖',
+                price: '20',
+
+                tag1: 'dessert'
+            },
+            {
+                name: '珍珠奶茶',
+                img: 'https://attach.setn.com/newsimages/2018/11/06/1627152-XXL.jpg',
+                content: '奶茶、珍珠、水',
+                price: '65',
+                tag1: 'drink',
+                tag2: 'dessert'
+            },
+            {
+                name: '紅燒牛肉麵',
+                img: 'https://1.bp.blogspot.com/-4L2AeEI4x9A/XgA9c6okfMI/AAAAAAABJ-s/sXJMDKGOaY08UKCD82ioxSFQq5IC2u9PwCKgBGAsYHg/s1600/00.jpg',
+                content: '牛肉、麵條、調味料',
+                price: '180',
+                tag1: 'food'
+            },
+            {
+                name: '滷肉飯',
+                img: 'https://2.bp.blogspot.com/-VKO_fV4tzB8/WsDMatMdEQI/AAAAAAABNgc/cyaHyT2FjxY_U96pKdBcz2BMSVFPvPSPwCLcBGAs/s1600/DSC_00461.JPG',
+                content: '飯、滷肉、調味料',
+                price: '35',
+                tag1: 'food'
+            },
+            {
+                name: '蘋果派',
+                img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Motherhood_and_apple_pie.jpg/1280px-Motherhood_and_apple_pie.jpg',
+                content: '蘋果、派皮、糖',
+                price: '210',
+                tag1: 'dessert'
+            },
+            {
+                name: '多多綠茶',
+                img: 'https://www.woo-oh.com/archive/image/edcontent3/yufruit5.jpg',
+                content: '養樂多、糖、綠茶',
+                price: '50',
+                tag1: 'drink'
+            }
+        ]
+
+
+        function show(rule) {
+            main.innerHTML = ''
+            for (let index = 0; index < SY_goodgoodEat_Product.length; index++) {
+                const element = SY_goodgoodEat_Product[index];
+
+                if (element.tag1 == rule || element.tag2 == rule || rule == "all") {
+                    //"||"=或者 
+                    main.innerHTML +=
+                        `<div class="card">
+                        <img src="${element.img}" alt="">
+                        <div class="name">${element.name}</div>
+                        <div class="ingredients">原料:${element.content}</div>
+                        <div class="price">價格:${element.price}</div>
+                    </div>`
+                }
+                // else if(rule == "all"){
+                //     main.innerHTML +=
+                //     `<div class="card">
+                //         <img src="${element.img}" alt="">
+                //         <div class="name">${element.name}</div>
+                //         <div class="ingredients">原料:${element.content}</div>
+                //         <div class="price">價格:${element.price}</div>
+                //     </div>`
+                // }
+            }
+        }
+        // 一打開網頁時的呈現方式
+        show('all')
+
+    </script>
+</body>
+
+</html>
